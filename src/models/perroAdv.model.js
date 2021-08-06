@@ -14,16 +14,16 @@ const adverSchema = new Schema(
     },
     dueno: {
       type: Schema.Types.ObjectId,
-      ref: "Dueño",
+      ref: "Dueno",
       required: true,
     },
     Type_pet: { type: String, required: [true, "The field is required"] },
     description: { type: String, required: [true, "The field is required"] },
-    photos: { type: [String], required: [true, "The field is required"] },,
+    photos: { type: [String], required: [true, "The field is required"] },
     price: { type: Number, required: [true, "The field is required"] },
     city: { type: String, requires: [true, "The field is required"] },
     advertisements: [{ type: Schema.Types.ObjectId, ref: "Advertisement" }],
-    comments:{ type: String, requires: [true, "The field is required"]s }
+    comments:{ type: String, requires: [true, "The field is required"] }
   },
 
   {
