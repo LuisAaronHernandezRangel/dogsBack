@@ -1,0 +1,21 @@
+{
+  "name": "dogsBack",
+  "version": "1.0.0",
+  "description": "repositorio back para perritos",
+  "main": "index.js",
+  "repository": "https://github.com/LuisAaronHernandezRangel/dogsBack.git",
+  "author": "LuisAaronHernandezRangel <lahr.4444@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.5"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
