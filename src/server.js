@@ -3,10 +3,10 @@ const express = require("express");
 const cors = require("cors");
 //const morgan = require("morgan");
 const connect = require("./db");
-// const studentRouter = require("./routes/student.js");
-// const adminRouter = require("./routes/admin");
-// const challengeRouter = require("./routes/challenge");
-//const {verify} = require("./utils/mailer")
+const duenoRouter = require("./routes/dueno.js");
+const heroeRouter = require("./routes/heroe");
+const perroAdvRouter = require("./routes/perroAdv");
+// const {verify} = require("./utils/mailer")
 
 const port = process.env.PORT || 8000;
 const app = express();
@@ -24,9 +24,9 @@ app.get('/', (req, res) => {
   console.log(req)
 })
 
-// app.use("/student", roomieRouter);
-// app.use("/admin", hostRouter);
-// app.use("/retos", spaAdver);
+app.use("/heroe", heroeRouter);
+app.use("/dueno", duenoRouter);
+app.use("/advertisements", perroAdvRouter);
 app.listen(port, () => {
   console.log(`App runnig at http://localhost:${port}`);
 });
