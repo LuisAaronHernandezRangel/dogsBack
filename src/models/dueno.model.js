@@ -32,7 +32,7 @@ const duenoSchema = new Schema(
     password: { type: String, match: [passwordRegExp, "Invalid password"] },
     age: {
       type: Number,
-      required: true,
+      required: false,
     },
 
     photos: {
@@ -52,11 +52,11 @@ const duenoSchema = new Schema(
   }
 );
 
-// duenoSchema.pre("save", async function () {
-//   if (this.password && this.isModified("password")) {
-//     this.password = await bcrypt.hash(this.password, 8);
-//   }
-// });
+duenoSchema.pre("save", async function () {
+  if (this.password && this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 8);
+  }
+});
 
 const Dueno = model("Dueno", duenoSchema);
 

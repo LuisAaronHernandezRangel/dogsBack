@@ -1,7 +1,7 @@
-//require("dotenv").config();
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-//const morgan = require("morgan");
+const morgan = require("morgan");
 const connect = require("./db");
 const duenoRouter = require("./routes/dueno.js");
 const heroeRouter = require("./routes/heroe");
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 //{origin: process.env.FRONTEND_URL || 'http://localhost:3000'}
    
-//app.use(morgan("dev"));
+app.use(morgan("dev"));
 
 app.get('/', (req, res) => {
   res.json( message , "muy conectado")
