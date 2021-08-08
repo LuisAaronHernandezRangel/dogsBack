@@ -35,7 +35,7 @@ const heroeSchema = new Schema(
     },
     cellPhone: {
       type: Number,
-      required: true,
+      required: false,
     },
     description: {
       type: String,
@@ -48,7 +48,7 @@ const heroeSchema = new Schema(
       ],
     },
     allReservations: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Reservation" }],
+      type: [{ type: Schema.Types.ObjectId, ref: "Advertisement" }],
     },
   },
   {

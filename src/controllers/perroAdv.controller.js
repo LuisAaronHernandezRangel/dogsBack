@@ -3,46 +3,49 @@ const Advertisement = require("../models/perroAdv.model");
 const Dueno = require("../models/dueno.model");
 
 module.exports = {
+  
+  //crear un adv
   async create(req, res) {
     try {
-      const { body, heroe } = req;
+      const { body, userId } = req.params;
 
       const advertisement = await Advertisement.create({
         ...body,
-        dueno: heroe,
+        dueno: userId,
       });
-      const dueno = await Dueno.findById(heroe);
+      const dueno = await Dueno.findById(userId);
       dueno.posts.push(advertisement._id);
-      await host.save({ validateBeforeSave: false });
+      await dueno.save({ validateBeforeSave: false });
       res.status(201).json(advertisement);
     } catch (err) {
       res.status(400).json({ message: err.message });
       console.log(err.message);
     }
   },
-
+//get los adv de un dueño
   async list(req, res) {
     try {
-      const { heroe } = req;
-      const adver = await Advertisement.find({ dueno: heroe });
+      const { userId } = req;
+      const adver = await Advertisement.find({ dueno: userId });
       res.status(201).json(adver);
     } catch (err) {
       res.status(400).json({ message: err.message });
     }
   },
 
-//   async show(req, res) {
-//     try {
-//       const { adverId } = req.params;
-//       const adver = await Advertisement.findById(adverId)
-//         .populate("host")
-//         .populate("reservations");
-//       res.status(200).json(adver);
-//     } catch (err) {
-//       res.status(400).json({ message: err.message });
-//     }
-//   },
+  //muestra un adv especifico del dueño
+  async show(req, res) {
+    try {
+      const { adverId } = req.params;
+      const adver = await Advertisement.findById(adverId)
+        .populate("Dueno")
+      res.status(200).json(adver);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  },
 
+  //actualiza un adver en especifico
   async update(req, res) {
     try {
       const {
@@ -62,14 +65,14 @@ module.exports = {
     try {
       const { adverId } = req.params;
       const adver = await Advertisement.findByIdAndDelete(adverId);
-      res.status(200).json(adver);
+      res.status(200).json("ha sido eliminado");
     } catch (err) {
       res.status(400).json({ message: err.message });
     }
   },
 
-  async showAll(req, res) {
-    const {city} = req.query;
+  // async showAll(req, res) {
+  //   const {city} = req.query;
 
     //const days = JSON.parse(selectedDays);
 
@@ -84,7 +87,7 @@ module.exports = {
 
     // const Iso8001DaysString = Iso8001Days.map((day) => day.toISOString());
 
-        try {
+        // try {
     //   if (Iso8001DaysString) {
     //     filters.selectedDays = { $in: Iso8001DaysString };
     //   }
@@ -92,22 +95,22 @@ module.exports = {
     //   const reservedAdsIds = reservations.map(
     //     (reservation) => reservation.advertisementId
     //   );
-      let ads = "";
-      if (city) {
-        ads = await Advertisement.find({
-          _id: { $nin: reservedAdsIds },
-          city,
-        });
-      } else {
-        ads = await Advertisement.find({
-          _id: { $nin: reservedAdsIds },
-        });
-      }
-      res.status(200).json(ads);
-    } catch (err) {
-      res.status(400).json({ message: err.message });
-    }
-  },
+  //     let ads = "";
+  //     if (city) {
+  //       ads = await Advertisement.find({
+  //         _id: { $nin: reservedAdsIds },
+  //         city,
+  //       });
+  //     } else {
+  //       ads = await Advertisement.find({
+  //         _id: { $nin: reservedAdsIds },
+  //       });
+  //     }
+  //     res.status(200).json(ads);
+  //   } catch (err) {
+  //     res.status(400).json({ message: err.message });
+  //   }
+  // },
   async updateComment(req,res){
     try{
     const { body, params } = req

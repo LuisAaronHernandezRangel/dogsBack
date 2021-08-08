@@ -21,9 +21,9 @@ const adverSchema = new Schema(
     description: { type: String, required: [true, "The field is required"] },
     photos: { type: [String], required: [true, "The field is required"] },
     price: { type: Number, required: [true, "The field is required"] },
-    city: { type: String, requires: [true, "The field is required"] },
+    city: { type: String, required: [true, "The field is required"] },
     advertisements: [{ type: Schema.Types.ObjectId, ref: "Advertisement" }],
-    comments:{ type: String, requires: [true, "The field is required"] }
+    comments:{ type: [String], required: [true, "The field is required"] }
   },
 
   {
