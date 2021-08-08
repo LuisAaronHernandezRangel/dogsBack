@@ -71,46 +71,22 @@ module.exports = {
     }
   },
 
-  // async showAll(req, res) {
-  //   const {city} = req.query;
-
-    //const days = JSON.parse(selectedDays);
-
-    // let filters = {};
-    // let Iso8001Days = [];
-
-    // if (days[0] === "") {
-    //   filters = {};
-    // } else {
-    //   Iso8001Days = days.map((day) => new Date(day));
-    // }
-
-    // const Iso8001DaysString = Iso8001Days.map((day) => day.toISOString());
-
-        // try {
-    //   if (Iso8001DaysString) {
-    //     filters.selectedDays = { $in: Iso8001DaysString };
-    //   }
-    //   const reservations = await Reservation.find(filters);
-    //   const reservedAdsIds = reservations.map(
-    //     (reservation) => reservation.advertisementId
-    //   );
-  //     let ads = "";
-  //     if (city) {
-  //       ads = await Advertisement.find({
-  //         _id: { $nin: reservedAdsIds },
-  //         city,
-  //       });
-  //     } else {
-  //       ads = await Advertisement.find({
-  //         _id: { $nin: reservedAdsIds },
-  //       });
-  //     }
-  //     res.status(200).json(ads);
-  //   } catch (err) {
-  //     res.status(400).json({ message: err.message });
-  //   }
-  // },
+  async showAll(req, res) {
+    const {Type_pet} = req.query;
+    try{
+      let ads = "";
+      if (Type_pet) {
+        ads = await Advertisement.find({
+          city,
+        });
+      } else {
+        ads = await Advertisement.find();
+      }
+      res.status(200).json(ads);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  },
   async updateComment(req,res){
     try{
     const { body, params } = req

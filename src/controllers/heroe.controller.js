@@ -96,13 +96,13 @@ module.exports = {
     }
   },
 
-//   async destroy(req, res) {
-//     try {
-//       const { roomieId } = req.params;
-//       const roomie = await UserHost.findByIdAndDelete(roomieId);
-//       res.status(400).json(roomie);
-//     } catch (err) {
-//       res.status(400).json({ message: err.message });
-//     }
-//   },
+  async destroy(req, res) {
+    try {
+      const { userId } = req.params;
+      const heroe = await Heroe.findByIdAndDelete(heroeId);
+      res.status(400).json("se elimino");
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  },
 };
