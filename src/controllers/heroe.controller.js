@@ -14,6 +14,7 @@ module.exports = {
       
     } catch (err) {
       res.status(400).json({ message: err.message });
+      console.log({ message: err.message });
     }
   },
 
@@ -35,7 +36,8 @@ module.exports = {
 
       const token = jwt.sign({ userId: heroe._id }, process.env.SECRET, {expiresIn: 60 * 60 * 24 * 365,});
 
-      res.status(201).json({ token });
+      res.status(201).json({heroe, token });
+      
     } catch (error) {
       console.log("ERROR", error.message);
 

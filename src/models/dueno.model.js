@@ -29,21 +29,22 @@ const duenoSchema = new Schema(
         },
       ],
     },
-    password: { type: String, match: [passwordRegExp, "Invalid password"] },
+    password: { type: String,required:false, match: [passwordRegExp, "Invalid password"] },
     age: {
       type: Number,
       required: false,
     },
 
-    photos: {
-      type: [String],
+    image: {
+      type: String,
       required: false,
-      default: [
-        "https://res.cloudinary.com/evollve-sas/image/upload/v1627351292/roomatch/166-1666981_silhouette-unknown-people-hd-png-download_gnkzz1.jpg",
-      ],
+      default: 
+      "https://res.cloudinary.com/dr8h8cvn9/image/upload/v1629514724/WhatsApp_Image_2021-08-15_at_5.02.39_PM_uzi7bx.jpg",
+      
     },
     posts: {
       type: [{ type: Schema.Types.ObjectId, ref: "Advertisement" }],
+      required: false,
     },
 
   },

@@ -8,7 +8,7 @@ const heroeSchema = new Schema(
   {
     userName: {
       type: String,
-      required: true,
+      required:  [true, "The field is required"],
     },
     email: {
       type: String,
@@ -41,11 +41,11 @@ const heroeSchema = new Schema(
       type: String,
       required: false,
     },
-    photos: {
-      type: [String],
-      default: [
+    image: {
+      type: String,
+      default: 
         "https://res.cloudinary.com/evollve-sas/image/upload/v1627351292/roomatch/166-1666981_silhouette-unknown-people-hd-png-download_gnkzz1.jpg",
-      ],
+      
     },
     allReservations: {
       type: [{ type: Schema.Types.ObjectId, ref: "Advertisement" }],

@@ -6,9 +6,9 @@ const { auth } = require("../utils/middlewares");
 router.route("/").get(duenoController.list);
 router.route("/signin").post(duenoController.signin);
 router.route("/signup").post(duenoController.signup);
-router.route("/profile/:userId").get(//auth,
-     duenoController.show);
-router.route("/:userId").get(duenoController.show);
+// router.route("/profile/:userId").get(//auth,
+//      duenoController.show);
+router.route("/").get(auth, duenoController.show);
 router.route("/profile/:userId").put(auth,
       //formData,
      duenoController.update);

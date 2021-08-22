@@ -10,7 +10,8 @@ module.exports = {
       const dueno = await Dueno.create(body);
       const token = jwt.sign({ userId: dueno._id },process.env.SECRET, {expiresIn: 60 * 60 * 24 * 365,});
       //await welcomeHost(dueno)
-      res.status(201).json({ token,dueno});
+      res.status(201).json({ token});
+      
     } catch (err) {
       res.status(400).json({ message: err.message });
       console.log({ message: err.message });
@@ -30,7 +31,7 @@ module.exports = {
       }
 
       const token = jwt.sign({ userId: dueno._id },process.env.SECRET, { expiresIn: 60 * 60 * 24 * 365,});
-
+      // .dueno.push(dueno.userName)
       res.status(201).json({ token,dueno });
       
     } catch (err) {
@@ -50,7 +51,7 @@ module.exports = {
   },
   async show(req, res) {
     try {
-      const { userId } = req.params;
+      const { userId } = req;
       const profile = await Dueno.findById(userId);
       res.status(200).json(profile);
     } catch (error) {
@@ -90,9 +91,9 @@ module.exports = {
 
   async destroy(req, res) {
     try {
-      const { userId } = req.params;
+      const { userId } = req;
       const dueno = await Dueno.findByIdAndDelete(userId);
-      res.status(400).json("se eliminó perfil");
+      res.status(200).json("se eliminó perfil");
     } catch (err) {
       res.status(400).json({ message: err.message });
       console.log({ message: err.message });
