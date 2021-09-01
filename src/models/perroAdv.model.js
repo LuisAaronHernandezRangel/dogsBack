@@ -5,25 +5,25 @@ const adverSchema = new Schema(
 
       title: {
       type: String,
-      required: true,
+      required: false,
     },
 
       name_dog: {
       type: String,
-      required: true,
+      required: false,
     },
     dueno: {
       type: Schema.Types.ObjectId,
       ref: "Dueno",
-      required: true,
+      required: false,
     },
-    Type_pet: { type: String, required: [true, "The field is required"] },
-    description: { type: String, required: [true, "The field is required"] },
-    photos: { type: [String], required: [true, "The field is required"] },
-    price: { type: Number, required: [true, "The field is required"] },
-    city: { type: String, required: [true, "The field is required"] },
+    type_pet: { type: String, required: [false, "The field is required"] },
+    description: { type: String, required: [false, "The field is required"] },
+    image: { type: String, required: [false, "The field is required"] },
+    city: { type: String, required: [false, "The field is required"] },
+    contact:{type: String, required: [false, "The field is required"] },
     advertisements: [{ type: Schema.Types.ObjectId, ref: "Advertisement" }],
-    comments:{ type: [String], required: [true, "The field is required"] }
+    comments:{ type: [String], required: [false, "The field is required"] }
   },
 
   {
